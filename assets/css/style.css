@@ -19,3 +19,12 @@ body {
 button {
     margin: 5px;
 }
+#results-container {
+    border: solid black 1px;
+    padding: 10px;
+}
+#results-container > p {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}

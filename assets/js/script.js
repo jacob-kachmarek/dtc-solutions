@@ -2,6 +2,10 @@ var searchButton = document.getElementById('search-button');
 async function fetchDTC() {
     var userInput = document.getElementById("dtc-input");
     const url = `https://car-code.p.rapidapi.com/obd2/${userInput.value}`;
+    if (!userInput.value) {
+        alert("Input a code");
+        document.location = "index.html";
+    }
     const options = {
       method: 'GET',
       headers: {
@@ -12,15 +16,16 @@ async function fetchDTC() {
   
     try {
       const response = await fetch(url, options);
-      const result = await response;
+      const result = await response.json();
       console.log(result);
+      localStorage.setItem("dtc", JSON.stringify(result));
+      document.location.href = 'results.html';
     } catch (error) {
       console.error(error);
     }
   }
-  
+
   searchButton.addEventListener('click', function() {
-    document.location.href = 'results.html';
     fetchDTC();
-  })
+  });
   
