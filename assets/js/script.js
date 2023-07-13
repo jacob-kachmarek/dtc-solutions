@@ -3,7 +3,6 @@ async function fetchDTC() {
     var userInput = document.getElementById("dtc-input");
     const url = `https://car-code.p.rapidapi.com/obd2/${userInput.value}`;
     if (!userInput.value) {
-        alert("Input a code");
         document.location = "index.html";
     }
     const options = {
