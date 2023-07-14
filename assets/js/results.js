@@ -6,7 +6,7 @@ var descriptionEl = document.createElement('p');
 var potentialCauseEl = document.createElement('p');
 var dtcCodeEl = document.createElement('p');
 
-
+var googleAPIkey = "AIzaSyCRSqinSufZJn6RyBWvuDPJdx9DeKC6g9o";
 descriptionEl.textContent = "Definition: " + dtcParsed.definition;
 potentialCauseEl.textContent = "Potential Causes: " + dtcParsed.cause;
 dtcCodeEl.textContent = "DTC Code: " + dtcParsed.code;
