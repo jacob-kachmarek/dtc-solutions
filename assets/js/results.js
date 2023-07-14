@@ -1,5 +1,5 @@
 var resultsContainer = document.getElementById('results-container');
-
+var locationButton = document.getElementById("location-button");
 var dtcResults = localStorage.getItem("dtc");
 var dtcParsed = JSON.parse(dtcResults);
 var descriptionEl = document.createElement('p');
@@ -13,5 +13,4 @@ dtcCodeEl.textContent = "DTC Code: " + dtcParsed.code;
 
 resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl);
 console.log(dtcParsed);
-
 
