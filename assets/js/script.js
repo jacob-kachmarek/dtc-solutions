@@ -1,15 +1,10 @@
 var searchButton = document.getElementById('search-button');
-searchButton.addEventListener('click', function() {
-  fetchDTC();
-});
-
 async function fetchDTC() {
   var userInput = document.getElementById("dtc-input");
   const url = `https://car-code.p.rapidapi.com/obd2/${userInput.value}`;
   if (!userInput.value) {
     document.location = "index.html";
   }
-  
   const options = {
     method: 'GET',
     headers: {
@@ -28,3 +23,7 @@ async function fetchDTC() {
     console.error(error);
   }
 }
+
+searchButton.addEventListener('click', function () {
+  fetchDTC();
+});

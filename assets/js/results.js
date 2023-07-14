@@ -19,12 +19,12 @@ var service;
 var infowindow;
 
 function initMap() {
-  var pyrmont = new google.maps.LatLng(-33.8665433,151.1956316);
+  var pyrmont = new google.maps.LatLng(-33.8665433, 151.1956316);
 
   map = new google.maps.Map(document.getElementById('map'), {
-      center: pyrmont,
-      zoom: 15
-    });
+    center: pyrmont,
+    zoom: 15
+  });
 
   var request = {
     location: pyrmont,
@@ -46,19 +46,19 @@ function callback(results, status) {
   }
 }
 function createMarker(place) {
-    console.log(place);
-    if (!place.geometry || !place.geometry.location) return;
-  
-    const marker = new google.maps.Marker({
-      map,
-      position: place.geometry.location,
-    });
+  console.log(place);
+  if (!place.geometry || !place.geometry.location) return;
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+  });
   infowindow = new google.maps.InfoWindow();
-    google.maps.event.addListener(marker, "click", () => {
-      infowindow.setContent(place.name + place.formatted_address || "");
-    
-      infowindow.open({ map, anchor: marker });
-    });
-  }
-  
+  google.maps.event.addListener(marker, "click", () => {
+    infowindow.setContent(place.name + place.formatted_address || "");
+
+    infowindow.open({ map, anchor: marker });
+  });
+}
+
 window.initMap = initMap;
