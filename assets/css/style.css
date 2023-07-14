@@ -24,7 +24,7 @@ body {
 button {
     margin: 5px;
 }
-/* #results-container {
+#results-container {
     border: solid black 1px;
     padding: 10px;
     width: 400px;
@@ -33,4 +33,4 @@ button {
     display: flex;
     flex-direction: column;
     margin: 5px;
-} */
+}
