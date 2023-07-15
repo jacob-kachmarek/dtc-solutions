@@ -81,7 +81,7 @@ var locationButton = document.getElementById('location-button');
 locationButton.addEventListener('click', searchNearestMechanic);
 
 function searchNearestMechanic() {
-  var locationInput = document.getElementById('location-input').value;
+  var locationInput = document.getElementById('location-input');
 
   // Use Geocoding API to retrieve the coordinates for the entered location
   // added .value
