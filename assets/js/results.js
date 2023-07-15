@@ -1,6 +1,4 @@
 var resultsContainer = document.getElementById('results-container');
-var locationInput = document.getElementById('location-input');
-var locationButton = document.getElementById('location-button');
 
 var dtcResults = localStorage.getItem("dtc");
 var dtcParsed = JSON.parse(dtcResults);
@@ -27,21 +25,22 @@ if (dtcParsed.cause.length < 3) {
 }
 console.log(dtcParsed);
 
+// have not used towing container YET!
 var towingContainer = document.getElementById('towing-container');
 var map;
 var service;
 var infowindow;
 
 function initMap() {
-  var pyrmont = new google.maps.LatLng(-33.8665433, 151.1956316);
+  var portland = new google.maps.LatLng(45.515232,-122.678385);
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: pyrmont,
+    center: portland,
     zoom: 15
   });
 
   var request = {
-    location: pyrmont,
+    location: portland,
     radius: '500',
     query: 'mechanics',
   };
@@ -59,14 +58,16 @@ function callback(results, status) {
     }
   }
 }
+
 function createMarker(place) {
   console.log(place);
   if (!place.geometry || !place.geometry.location) return;
 
-  const marker = new google.maps.Marker({
+  var marker = new google.maps.Marker({
     map,
     position: place.geometry.location,
   });
+
   infowindow = new google.maps.InfoWindow();
   google.maps.event.addListener(marker, "click", () => {
     infowindow.setContent(place.name + place.formatted_address || "");
@@ -75,4 +76,33 @@ function createMarker(place) {
   });
 }
 
+var locationButton = document.getElementById('location-button');
+
+locationButton.addEventListener('click', searchNearestMechanic);
+
+function searchNearestMechanic() {
+  var locationInput = document.getElementById('location-input');
+
+  // Use Geocoding API to retrieve the coordinates for the entered location
+  // added .value
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({ address: locationInput.value }, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      var location = results[0].geometry.location;
+
+      // Use the retrieved coordinates in the Places API request
+      var request = {
+        query: 'mechanics',
+        location: location,
+        radius: '500',
+      };
+
+      service.textSearch(request, callback);
+    } else {
+      console.error('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+window.addEventListener('load', initMap);
 window.initMap = initMap;
