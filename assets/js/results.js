@@ -1,4 +1,6 @@
 var resultsContainer = document.getElementById('results-container');
+var locationInput = document.getElementById('location-input');
+var locationButton = document.getElementById('location-button');
 
 var dtcResults = localStorage.getItem("dtc");
 var dtcParsed = JSON.parse(dtcResults);
