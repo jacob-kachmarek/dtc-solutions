@@ -12,7 +12,19 @@ descriptionEl.textContent = "Definition: " + dtcParsed.definition;
 potentialCauseEl.textContent = "Potential Causes: " + dtcParsed.cause;
 dtcCodeEl.textContent = "DTC Code: " + dtcParsed.code;
 
-resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl);
+if (dtcParsed.cause.length < 3) {
+  var complexityLvlEasy = document.createElement('p');
+  complexityLvlEasy.textContent = "Complexity: Easy";
+  resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl, complexityLvlEasy);
+} else if (dtcParsed.cause.length >= 3 && dtcParsed.cause.length <= 6) {
+  var complexityLvlMed = document.createElement('p');
+  complexityLvlMed.textContent = "Complexity: Medium";
+  resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl, complexityLvlMed);
+} else {
+  var complexityLvlHard = document.createElement('p');
+  complexityLvlHard.textContent = "Complexity: Hard";
+  resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl, complexityLvlHard);
+}
 console.log(dtcParsed);
 
 var towingContainer = document.getElementById('towing-container');
