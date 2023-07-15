@@ -27,3 +27,4 @@ async function fetchDTC() {
 searchButton.addEventListener('click', function () {
   fetchDTC();
 });
+
