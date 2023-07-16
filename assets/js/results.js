@@ -1,5 +1,5 @@
 var resultsContainer = document.getElementById('results-container');
-
+var backButton = document.getElementById('back-button');
 var dtcResults = localStorage.getItem("dtc");
 var dtcParsed = JSON.parse(dtcResults);
 var descriptionEl = document.createElement('p');
@@ -9,6 +9,7 @@ var dtcCodeEl = document.createElement('p');
 descriptionEl.textContent = "Definition: " + dtcParsed.definition;
 potentialCauseEl.textContent = "Potential Causes: " + dtcParsed.cause;
 dtcCodeEl.textContent = "DTC Code: " + dtcParsed.code;
+
 
 if (dtcParsed.cause.length < 3) {
   var complexityLvlEasy = document.createElement('p');
@@ -24,6 +25,10 @@ if (dtcParsed.cause.length < 3) {
   resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl, complexityLvlHard);
 }
 console.log(dtcParsed);
+
+backButton.addEventListener('click', function() {
+  document.location = "index.html";
+})
 
 // have not used towing container YET!
 var towingContainer = document.getElementById('towing-container');
