@@ -19,23 +19,7 @@ body {
     background-color: antiquewhite;
 }
 
-#map {
-    height: 500px;
-    width: 500px;
-}
-
 button {
-    margin: 5px;
-}
-
-#results-container {
-    border: solid black 1px;
-    padding: 10px;
-    width: 400px;
-}
-#results-container > p {
-    display: flex;
-    flex-direction: column;
     margin: 5px;
 }
 
@@ -52,7 +36,7 @@ label {
 
 .l-box-lrg {
     padding: 2em;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .is-center {
@@ -77,7 +61,7 @@ a.pure-button-primary {
     background: #2d3e50;
     padding: 0.5em;
     text-align: center;
-    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.10);
 }
 
 .pure-menu.pure-menu-fixed {
@@ -98,6 +82,7 @@ a.pure-button-primary {
 .home-menu a {
     color: #6FBEF3;
 }
+
 .home-menu li a:hover,
 .home-menu li a:focus {
     background: none;
@@ -122,7 +107,10 @@ a.pure-button-primary {
     height: 50%;
     margin: auto;
     position: absolute;
-    top: 100px; left: 0; bottom: 0; right: 0;
+    top: 100px;
+    left: 0;
+    bottom: 0;
+    right: 0;
     text-align: center;
     text-transform: uppercase;
 }
@@ -155,9 +143,11 @@ a.pure-button-primary {
     background: white;
 
 }
+
 .content {
     padding: 1em 1em 3em;
 }
+
 .content-head {
     font-weight: 400;
     text-transform: uppercase;
@@ -170,7 +160,7 @@ a.pure-button-primary {
 }
 
 .content-subhead i {
-        margin-right: 7px;
+    margin-right: 7px;
 }
 
 @media (min-width: 48em) {
@@ -182,9 +172,10 @@ a.pure-button-primary {
     .home-menu {
         text-align: left;
     }
-        .home-menu ul {
-            float: right;
-        }
+
+    .home-menu ul {
+        float: right;
+    }
 
     .splash {
         width: 50%;
@@ -200,6 +191,7 @@ a.pure-button-primary {
     }
 
 }
+
 @media (min-width: 78em) {
     .splash-head {
         font-size: 300%;
