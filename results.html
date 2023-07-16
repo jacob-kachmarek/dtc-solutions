@@ -4,26 +4,30 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/reset.css">
-        <link rel="stylesheet" href="./assets/css/resultsStyle.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/base-min.css">
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <link rel="stylesheet" href="./assets/css/resultsStyle.css">
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV2UZxLHJBkNhaji3kEbjoaQRlcACbEFQ&callback=initMap&libraries=places&v=weekly" defer></script>
        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV2UZxLHJBkNhaji3kEbjoaQRlcACbEFQ&callback=initMap" defer></script>  -->
         <title>DTC-solutions</title> 
     </head>
     
     <body>
-        <div id="results-container">
-            <button id="back-button">Back</button>
+        <main>
+            <div id="results-container">
+                <button id="back-button">Back</button>
+            </div>
+            <div id="map-container">
+                <input id="location-input" placeholder="Enter location">
+                <button id="location-button">Search</button>
+                <div id="map"></div>
+            </div> 
+        </main>
+        <div id="towing-container">
+            <img src="./assets/images/tow truck.png">
         </div>
-        <div id="towing-container"></div>
-        <div id="map-container">
-            <input id="location-input" placeholder="Enter location">
-            <button id="location-button">Search</button>
-            <div id="map"></div>
-        </div> 
-        <script src="./assets/js/results.js"></script>
+    <script src="./assets/js/results.js"></script>
     </body>
  </html>
     
