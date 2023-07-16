@@ -36,6 +36,8 @@ var map;
 var service;
 var infowindow;
 
+var markers = []; // Defined markers for the functions 
+
 function initMap() {
   var portland = new google.maps.LatLng(45.515232,-122.678385);
 
@@ -69,9 +71,11 @@ function createMarker(place) {
   if (!place.geometry || !place.geometry.location) return;
 
   var marker = new google.maps.Marker({
-    map,
+    map: map,
     position: place.geometry.location,
   });
+  
+  markers.push(marker);
 
   infowindow = new google.maps.InfoWindow();
   google.maps.event.addListener(marker, "click", () => {
@@ -94,7 +98,10 @@ function searchNearestMechanic() {
   geocoder.geocode({ address: locationInput.value }, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       var location = results[0].geometry.location;
-
+      // Center the map to the new location
+      map.setCenter(location)
+      // Clears the old markers and makes a new one for new location
+      clearMarkers();
       // Use the retrieved coordinates in the Places API request
       var request = {
         query: 'mechanics',
@@ -107,6 +114,13 @@ function searchNearestMechanic() {
       console.error('Geocode was not successful for the following reason: ' + status);
     }
   });
+}
+//Clear markers to get rid of the ones before and resetting the map
+function clearMarkers(){
+  for (var i=0; i < markers.length; i++){
+    markers[i].setMap(null);
+  }
+  markers = [];
 }
 
 window.addEventListener('load', initMap);
