@@ -115,7 +115,7 @@ function searchNearestMechanic() {
     }
     anime({
       targets: '.tow',
-      translateX: 900
+      translateX: 325
     });
   });
 }
