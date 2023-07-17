@@ -1,6 +1,6 @@
 var searchButton = document.getElementById('search-button');
+var userInput = document.getElementById("dtc-input");
 async function fetchDTC() {
-  var userInput = document.getElementById("dtc-input");
   const url = `https://car-code.p.rapidapi.com/obd2/${userInput.value}`;
   if (!userInput.value) {
     document.location = "index.html";
@@ -24,7 +24,10 @@ async function fetchDTC() {
   }
 }
 
-searchButton.addEventListener('click', function () {
-  fetchDTC();
+searchButton.addEventListener('click',fetchDTC());
+userInput.addEventListener('keyup', function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    fetchDTC();
+  }
 });
-
