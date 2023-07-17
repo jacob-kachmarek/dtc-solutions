@@ -26,7 +26,7 @@ if (dtcParsed.cause.length < 3) {
 }
 console.log(dtcParsed);
 
-backButton.addEventListener('click', function() {
+backButton.addEventListener('click', function () {
   document.location = "index.html";
 })
 
@@ -39,7 +39,7 @@ var infowindow;
 var markers = []; // Defined markers for the functions 
 
 function initMap() {
-  var portland = new google.maps.LatLng(45.515232,-122.678385);
+  var portland = new google.maps.LatLng(45.515232, -122.678385);
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: portland,
@@ -74,7 +74,7 @@ function createMarker(place) {
     map: map,
     position: place.geometry.location,
   });
-  
+
   markers.push(marker);
 
   infowindow = new google.maps.InfoWindow();
@@ -87,7 +87,7 @@ function createMarker(place) {
 
 var locationButton = document.getElementById('location-button');
 
-locationButton.addEventListener('click', searchNearestMechanic);
+locationButton.addEventListener('click', searchNearestMechanic)
 
 function searchNearestMechanic() {
   var locationInput = document.getElementById('location-input');
@@ -95,7 +95,7 @@ function searchNearestMechanic() {
   // Use Geocoding API to retrieve the coordinates for the entered location
   // added .value
   var geocoder = new google.maps.Geocoder();
-  geocoder.geocode({ address: locationInput.value }, function(results, status) {
+  geocoder.geocode({ address: locationInput.value }, function (results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       var location = results[0].geometry.location;
       // Center the map to the new location
@@ -113,11 +113,15 @@ function searchNearestMechanic() {
     } else {
       console.error('Geocode was not successful for the following reason: ' + status);
     }
+    anime({
+      targets: '.tow',
+      translateX: 900
+    });
   });
 }
 //Clear markers to get rid of the ones before and resetting the map
-function clearMarkers(){
-  for (var i=0; i < markers.length; i++){
+function clearMarkers() {
+  for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
   markers = [];
