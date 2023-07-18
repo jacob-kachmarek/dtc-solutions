@@ -83,6 +83,26 @@ function createMarker(place) {
 
     infowindow.open({ map, anchor: marker });
   });
+  //Location list of nearby mechanics
+  var locationList = document.getElementById('location-list');
+  
+  var locationBox = document.createElement('div');
+  locationBox.classList.add('location-box');
+  
+  var nameEl = document.createElement('h3');
+  nameEl.textContent = place.name;
+  
+  var addressEl = document.createElement('p');
+  addressEl.textContent = place.formatted_address;
+  
+  // var hoursEl = document.createElement('p');
+  // hoursEl.textContent = place.opening_hours
+  
+  locationBox.appendChild(nameEl);
+  locationBox.appendChild(addressEl);
+  // locationBox.appendChild(hoursEl);
+  
+  locationList.appendChild(locationBox);
 }
 
 var locationButton = document.getElementById('location-button');
