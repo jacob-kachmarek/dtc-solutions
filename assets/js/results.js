@@ -183,7 +183,7 @@ function searchNearestMechanic() {
     }
     anime({ // Makes the truch move over 
       targets: '.tow',
-      translateX: 325,
+      translateX: 750,
     });
   });
 }
