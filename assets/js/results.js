@@ -41,22 +41,34 @@ var infowindow;
 var markers = []; // Defined markers for the functions 
 
 function initMap() {
-  var portland = new google.maps.LatLng(45.515232, -122.678385);
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: portland,
-    zoom: 15
-  });
-
-  var request = {
-    location: portland,
-    radius: '500',
-    query: 'mechanics',
-  };
-
-  service = new google.maps.places.PlacesService(map);
-  service.textSearch(request, callback);
-}
+  // var portland = new google.maps.LatLng(45.515232, -122.678385);
+  if (navigator.geolocation) {
+    //
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var portland = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: portland,
+        zoom: 15
+      });
+      var request = {
+        location: portland,
+        radius: '500',
+        query: 'mechanics',
+      };
+      service = new google.maps.places.PlacesService(map);
+      service.textSearch(request, callback);
+    })
+  }
+  else {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: portland,
+      zoom: 15
+    });
+  }
+};
 
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -86,25 +98,25 @@ function createMarker(place) {
     infowindow.open({ map, anchor: marker });
   });
   appendLocations(place);
-  
+
 }
-var appendLocations = function(place){ //Location list of nearby mechanics
+var appendLocations = function (place) { //Location list of nearby mechanics
   var locationBox = document.createElement('div');
   locationBox.classList.add('location-box');
-  
+
   var nameEl = document.createElement('h3');
   nameEl.textContent = place.name;
-  
+
   var addressEl = document.createElement('p');
   addressEl.textContent = place.formatted_address;
-  
+
   // var hoursEl = document.createElement('p');
   // hoursEl.textContent = place.opening_hours
-  
+
   locationBox.appendChild(nameEl);
   locationBox.appendChild(addressEl);
   // locationBox.appendChild(hoursEl);
-  
+
   locationList.appendChild(locationBox);
 }
 var locationButton = document.getElementById('location-button');
