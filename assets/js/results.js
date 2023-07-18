@@ -5,6 +5,7 @@ var dtcParsed = JSON.parse(dtcResults);
 var descriptionEl = document.createElement('p');
 var potentialCauseEl = document.createElement('p');
 var dtcCodeEl = document.createElement('p');
+var locationList = document.getElementById('location-list');
 
 descriptionEl.textContent = "Definition: " + dtcParsed.definition;
 potentialCauseEl.textContent = "Potential Causes: " + dtcParsed.cause;
@@ -83,9 +84,10 @@ function createMarker(place) {
 
     infowindow.open({ map, anchor: marker });
   });
-  //Location list of nearby mechanics
-  var locationList = document.getElementById('location-list');
+  appendLocations(place);
   
+}
+var appendLocations = function(place){ //Location list of nearby mechanics
   var locationBox = document.createElement('div');
   locationBox.classList.add('location-box');
   
@@ -104,7 +106,6 @@ function createMarker(place) {
   
   locationList.appendChild(locationBox);
 }
-
 var locationButton = document.getElementById('location-button');
 
 locationButton.addEventListener('click', searchNearestMechanic)
@@ -128,7 +129,17 @@ function searchNearestMechanic() {
         location: location,
         radius: '500',
       };
-
+      // Updates the list of nearby mechanics
+      service.textSearch(request, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          // Clear the existing location list
+          locationList.innerHTML = "";
+          // Populate the location list with new results
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      });
       service.textSearch(request, callback);
     } else {
       console.error('Geocode was not successful for the following reason: ' + status);
