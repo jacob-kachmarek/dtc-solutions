@@ -1,8 +1,14 @@
 main {
+  color: rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+/* Added body selector to CSS styling */
+body {
+  background-color: beige;
 }
 
 #map-container {
@@ -15,8 +21,21 @@ main {
   max-width: 100%;
 }
 
+/* Added some styling to button with cursor */
 button {
   margin: 5px;
+  padding: 10px 15px;
+  background-color: #8a8044da;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Added this input */
+input {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 4px;
 }
 
 #results-container {
