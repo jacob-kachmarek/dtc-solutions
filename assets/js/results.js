@@ -39,17 +39,39 @@ var service;
 var infowindow;
 
 var markers = []; // Defined markers for the functions 
+var defaultLocation = new google.maps.LatLng(45.515232, -122.678385);
 
 function initMap() {
-  var area = new google.maps.LatLng(45.515232, -122.678385);
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        var userLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        createMap(userLocation);
+      },
+      function (error) {
+        console.error('Error getting user location:', error);
+        createMap(defaultLocation);
+      }
+    );
+  } else {
+    console.error('Geolocation is not supported by this browser.');
+    createMap(defaultLocation);
+  }
+}
 
+
+// Makes the map with the location of the user
+function createMap(locationObj) {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: area,
-    zoom: 15
+    center: locationObj,
+    zoom: 15,
   });
 
   var request = {
-    location: area,
+    location: locationObj,
     radius: '500',
     query: 'mechanics',
   };
@@ -59,11 +81,12 @@ function initMap() {
 }
 
 function callback(results, status) {
-  if (status == google.maps.places.PlacesServiceStatus.OK) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
     console.log(results);
     for (var i = 0; i < results.length; i++) {
       var place = results[i];
-      createMarker(results[i]);
+      createMarker(place);
+      appendLocations(place);
     }
   }
 }
@@ -80,80 +103,64 @@ function createMarker(place) {
   markers.push(marker);
 
   infowindow = new google.maps.InfoWindow();
-  google.maps.event.addListener(marker, "click", () => {
-    infowindow.setContent(place.name + place.formatted_address || "");
-
+  google.maps.event.addListener(marker, 'click', () => {
+    infowindow.setContent(place.name + place.formatted_address || '');
     infowindow.open({ map, anchor: marker });
   });
-  appendLocations(place);
-  
 }
-var appendLocations = function(place){ //Location list of nearby mechanics
+var appendLocations = function (place) {
   var locationBox = document.createElement('div');
   locationBox.classList.add('location-box');
-  
+
   var nameEl = document.createElement('h3');
   nameEl.textContent = place.name;
-  
+
   var addressEl = document.createElement('p');
   addressEl.textContent = place.formatted_address;
-  
-  // var hoursEl = document.createElement('p');
-  // hoursEl.textContent = place.opening_hours
-  
+
   locationBox.appendChild(nameEl);
   locationBox.appendChild(addressEl);
-  // locationBox.appendChild(hoursEl);
-  
+
   locationList.appendChild(locationBox);
-}
+};
+
 var locationButton = document.getElementById('location-button');
 
 locationButton.addEventListener('click', searchNearestMechanic);
 locationInput.addEventListener('keyup', function (event) {
-  if (event.key === "Enter") {
+  if (event.key === 'Enter') {
     event.preventDefault();
     searchNearestMechanic();
   }
 });
 
 function searchNearestMechanic() {
-  var locationInput = document.getElementById('location-input');
-
-  // Use Geocoding API to retrieve the coordinates for the entered location
-  // added .value
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode({ address: locationInput.value }, function (results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       var location = results[0].geometry.location;
-      // Center the map to the new location
-      map.setCenter(location)
-      // Clears the old markers and makes a new one for new location
+      map.setCenter(location);
       clearMarkers();
-      // Use the retrieved coordinates in the Places API request
       var request = {
         query: 'mechanics',
         location: location,
         radius: '500',
       };
-      // Updates the list of nearby mechanics
       service.textSearch(request, function (results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          // Clear the existing location list
-          locationList.innerHTML = "";
-          // Populate the location list with new results
+          locationList.innerHTML = '';
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
+            appendLocations(results[i]);
           }
         }
       });
-      service.textSearch(request, callback);
     } else {
       console.error('Geocode was not successful for the following reason: ' + status);
     }
     anime({
       targets: '.tow',
-      translateX: 325
+      translateX: 325,
     });
   });
 }
