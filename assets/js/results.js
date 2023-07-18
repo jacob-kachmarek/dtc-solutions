@@ -16,14 +16,17 @@ dtcCodeEl.textContent = "DTC Code: " + dtcParsed.code;
 if (dtcParsed.cause.length < 3) {
   var complexityLvlEasy = document.createElement('p');
   complexityLvlEasy.textContent = "Complexity: Easy";
+  complexityLvlEasy.style.color = 'green';
   resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl, complexityLvlEasy);
 } else if (dtcParsed.cause.length >= 3 && dtcParsed.cause.length <= 6) {
   var complexityLvlMed = document.createElement('p');
   complexityLvlMed.textContent = "Complexity: Medium";
+  complexityLvlMed.style.color = 'yellow';
   resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl, complexityLvlMed);
 } else {
   var complexityLvlHard = document.createElement('p');
   complexityLvlHard.textContent = "Complexity: Hard";
+  complexityLvlHard.style.color = 'red';
   resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl, complexityLvlHard);
 }
 console.log(dtcParsed);
