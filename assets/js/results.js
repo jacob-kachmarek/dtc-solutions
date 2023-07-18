@@ -39,17 +39,17 @@ var service;
 var infowindow;
 
 var markers = []; // Defined markers for the functions 
-var defaultLocation = {lat:45.515232, lng: -122.678385}; // Default location for the map
+var defaultLocation = { lat: 45.515232, lng: -122.678385 }; // Default location for the map
 
 function initMap() { // Calling on the locations 
   if (navigator.geolocation) { // If the user allows the geolocation to see their location 
     navigator.geolocation.getCurrentPosition(function (position) {
-        var userLocation = {
-          lat: position.coords.latitude,// Translate position  into latitude and longitude
-          lng: position.coords.longitude,
-        };
-        createMap(userLocation); // Creates the map for location being called 
-      },
+      var userLocation = {
+        lat: position.coords.latitude,// Translate position  into latitude and longitude
+        lng: position.coords.longitude,
+      };
+      createMap(userLocation); // Creates the map for location being called 
+    },
       function (error) { // Shows error message and presents the defauled location
         console.error('Error getting user location:', error);
         createMap(defaultLocation);
@@ -79,13 +79,13 @@ function createMap(locationObj) {
   service.textSearch(request, callback); // Calls the search function
 }
 
-function callback(results, status) { 
+function callback(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     console.log(results);
     for (var i = 0; i < results.length; i++) {
       var place = results[i];
       createMarker(place);
-      
+
       // Checkikng the appendLocations function to make sure its a function
       // for some reason it wasnt taking it as a function before ? 
       //appendLocations(place); <- Old call before
