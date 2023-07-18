@@ -6,6 +6,7 @@ var descriptionEl = document.createElement('p');
 var potentialCauseEl = document.createElement('p');
 var dtcCodeEl = document.createElement('p');
 var locationList = document.getElementById('location-list');
+var locationInput = document.getElementById('location-input');
 
 descriptionEl.textContent = "Definition: " + dtcParsed.definition;
 potentialCauseEl.textContent = "Potential Causes: " + dtcParsed.cause;
@@ -108,7 +109,13 @@ var appendLocations = function(place){ //Location list of nearby mechanics
 }
 var locationButton = document.getElementById('location-button');
 
-locationButton.addEventListener('click', searchNearestMechanic)
+locationButton.addEventListener('click', searchNearestMechanic);
+locationInput.addEventListener('keyup', function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    searchNearestMechanic();
+  }
+});
 
 function searchNearestMechanic() {
   var locationInput = document.getElementById('location-input');
