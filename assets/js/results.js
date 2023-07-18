@@ -14,9 +14,9 @@ dtcCodeEl.textContent = "DTC Code: " + dtcParsed.code;
 
 // Comaring the parsed DTC cause, and compared it to a valuem if its less than 3 then its easy to fix, else medium or hard. 
 if (dtcParsed.cause.length < 3) {
-  var complexityLvlEasy = document.createElement('p');
+  var complexityLvlEasy = document.createElement('p'); // Creates the easy level of complexity
   complexityLvlEasy.textContent = "Complexity: Easy";
-  complexityLvlEasy.style.color = 'green';
+  complexityLvlEasy.style.color = 'green'; // Sets the color of the easy level
   resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl, complexityLvlEasy);
 } else if (dtcParsed.cause.length >= 3 && dtcParsed.cause.length <= 6) {
   var complexityLvlMed = document.createElement('p');
@@ -173,8 +173,8 @@ function searchNearestMechanic() {
         if (status === google.maps.places.PlacesServiceStatus.OK) { // If the status is okay, run code
           locationList.innerHTML = ''; //Empty the list
           for (var i = 0; i < results.length; i++) { // Iterating through the results and creating markers for them and appending them to the list
-            createMarker(results[i]);
-            appendLocations(results[i]);
+            createMarker(results[i]); // Creates the marker and places them in the map
+            appendLocations(results[i]); //AppendLocations into location-box to display
           }
         }
       });
@@ -188,11 +188,11 @@ function searchNearestMechanic() {
   });
 }
 //Clear markers to get rid of the ones before and resetting the map
-function clearMarkers() {
+function clearMarkers() { 
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
-  markers = [];
+  markers = []; //Clears the markers
 }
 
 
