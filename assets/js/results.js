@@ -41,15 +41,15 @@ var infowindow;
 var markers = []; // Defined markers for the functions 
 
 function initMap() {
-  var portland = new google.maps.LatLng(45.515232, -122.678385);
+  var area = new google.maps.LatLng(45.515232, -122.678385);
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: portland,
+    center: area,
     zoom: 15
   });
 
   var request = {
-    location: portland,
+    location: area,
     radius: '500',
     query: 'mechanics',
   };
