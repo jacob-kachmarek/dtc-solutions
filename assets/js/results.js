@@ -12,10 +12,10 @@ descriptionEl.textContent = "Definition: " + dtcParsed.definition;
 potentialCauseEl.textContent = "Potential Causes: " + dtcParsed.cause;
 dtcCodeEl.textContent = "DTC Code: " + dtcParsed.code;
 
-
+// Comaring the parsed DTC cause, and compared it to a valuem if its less than 3 then its easy to fix, else medium or hard. 
 if (dtcParsed.cause.length < 3) {
-  var complexityLvlEasy = document.createElement('p');
-  complexityLvlEasy.textContent = "Complexity: Easy";
+  var complexityLvlEasy = document.createElement('p'); // Creates the p tag for the easy to fix
+  complexityLvlEasy.textContent = "Complexity: Easy"; // within that pointer, make a text content that says "Complexity: Easy"
   resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl, complexityLvlEasy);
 } else if (dtcParsed.cause.length >= 3 && dtcParsed.cause.length <= 6) {
   var complexityLvlMed = document.createElement('p');
@@ -27,7 +27,7 @@ if (dtcParsed.cause.length < 3) {
   resultsContainer.append(dtcCodeEl, descriptionEl, potentialCauseEl, complexityLvlHard);
 }
 console.log(dtcParsed);
-
+// Back button to go back to index.html
 backButton.addEventListener('click', function () {
   document.location = "index.html";
 })
