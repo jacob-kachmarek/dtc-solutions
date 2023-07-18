@@ -4,7 +4,16 @@ main {
     justify-content: flex-start;
     align-items: flex-start;
   }
+  
+/* I added this */
+/* .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+} */
 
+/* I added this */
  #map-container {
     margin-top: 15px;
     margin-left: auto;
@@ -12,7 +21,7 @@ main {
 
  #map {
     height: 500px;
-    width: 600px;
+    width: 650px; 
  }
 
  button {
@@ -20,15 +29,15 @@ main {
  }
 
  #results-container {
-     border: solid black 1px;
+     border: solid black 1px; 
      padding: 10px;
      width: 450px;
  }
 
  #results-container>p {
-     display: flex;
-     flex-direction: column;
-     margin: 9px;
+      display: flex;
+     flex-direction: column; 
+      margin: 9px; 
  }
 
  #towing-container {

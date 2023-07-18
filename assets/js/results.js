@@ -150,6 +150,7 @@ function searchNearestMechanic() {
     });
   });
 }
+
 //Clear markers to get rid of the ones before and resetting the map
 function clearMarkers() {
   for (var i = 0; i < markers.length; i++) {
