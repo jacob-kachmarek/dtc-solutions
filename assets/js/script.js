@@ -24,7 +24,9 @@ async function fetchDTC() {
   }
 }
 
-searchButton.addEventListener('click',fetchDTC());
+searchButton.addEventListener('click',function(){
+  fetchDTC();
+});
 userInput.addEventListener('keyup', function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
