@@ -75,6 +75,9 @@ label {
     align-items: center;
     justify-content: center;
     margin-top: 200px;
+    position: fixed;
+    left: 0;
+    right: 0;
 }
 
 .splash {
@@ -166,8 +169,13 @@ label {
         font-size: 250%;
     }
 
+
     .l-box-lrg {
         border: none;
+    }
+
+    .splash-container {
+        float: right;
     }
 
 }
