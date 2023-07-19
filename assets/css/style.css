@@ -76,8 +76,8 @@ label {
     justify-content: center;
     margin-top: 200px;
     position: fixed;
-    top: 5%;
-    left: 40%;
+    left: 0;
+    right: 0;
 }
 
 .splash {
@@ -169,8 +169,13 @@ label {
         font-size: 250%;
     }
 
+
     .l-box-lrg {
         border: none;
+    }
+
+    .splash-container {
+        float: right;
     }
 
 }
