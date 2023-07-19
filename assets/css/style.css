@@ -15,6 +15,10 @@ button {
     margin: 5px;
 }
 
+input {
+    width: 400px;
+}
+
 #search-button {
     border: solid black;
     border-width: 3px;
@@ -34,11 +38,6 @@ label {
     text-align: center;
     padding: 1em;
 }
-
-/* .l-box-lrg {
-    padding: 2em;
-    border-bottom: 1px solid rgba(244, 244, 244, 0.1);
-} */
 
 .is-center {
     font-size: 21px;
@@ -66,28 +65,17 @@ label {
 }
 
 .splash-container {
-    background: #dadbb3de;
-    z-index: 1;
-    overflow: hidden;
-    /* The following styles are required for the "scroll-over" effect */
-    width: 100%;
-    height: 88%;
-    top: 20;
-    left: 20;
-    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
 }
 
 .splash {
-    width: 80%;
-    height: 50%;
-    margin: auto;
-    position: absolute;
-    top: 30px;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .splash-head {
@@ -116,8 +104,8 @@ label {
     height: 100%;
     max-width: 550px;
     max-height: 400px;
-  }
-  
+}
+
 
 .content-wrapper {
     /* These styles are required for the "scroll-over" effect */
@@ -152,6 +140,7 @@ label {
     .l-box {
         flex-basis: 50%;
     }
+
 }
 
 @media (min-width: 48em) {
@@ -167,11 +156,6 @@ label {
         float: right;
     }
 
-    .splash {
-        width: 50%;
-        height: 50%;
-    }
-
     .splash-head {
         font-size: 250%;
     }
@@ -179,6 +163,7 @@ label {
     .l-box-lrg {
         border: none;
     }
+
 }
 
 @media (min-width: 78em) {
