@@ -41,7 +41,9 @@ input {
 }
 
 #results-container {
+  background-color: rgb(202, 202, 202);
   border: solid black 1px;
+  border-width: 5px;
   padding: 10px;
   width: 450px;
 }
