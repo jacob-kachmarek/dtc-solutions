@@ -111,6 +111,14 @@ label {
     letter-spacing: 0.05em;
 }
 
+.same-size-image {
+    width: 150%;
+    height: 100%;
+    max-width: 550px;
+    max-height: 400px;
+  }
+  
+
 .content-wrapper {
     /* These styles are required for the "scroll-over" effect */
     position: absolute;
